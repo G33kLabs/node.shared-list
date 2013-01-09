@@ -124,7 +124,7 @@
         // -> Load ShareJS
         async.series([
         	function(callback) {
-        		require(['/assets/js/vendors/ace.js'], function() {
+        		require(['/assets/vendors/ace.js'], function() {
         			callback(null);
         		})
         	},
