@@ -32,6 +32,7 @@
             'assets/vendors/async.min.js',
             'assets/vendors/json3.min.js',
             'assets/vendors/moment.min.js',
+            'assets/vendors/ace.js',
             'assets/vendors/browser.detect.js',
             'assets/vendors/backbone.min.js',
             'assets/vendors/mustache.min.js',
