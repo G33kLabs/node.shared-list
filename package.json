@@ -23,6 +23,7 @@
     "request": "x.x.x",
     "ua-parser": "x.x.x",
     "locale": "x.x.x",
+    "share": "x.x.x",
     "connect-heroku-redis": "x.x.x"
   },
 

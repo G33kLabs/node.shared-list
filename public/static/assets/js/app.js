@@ -22,7 +22,7 @@
 			this.loadGA() ;
 
 			// -> Init display
-			//this.show() ;
+			this.show() ;
 
         	// DISPLAY ERROR MESSAGE FOR UNSUPPORTED DEVICES
 	        if ( ! self.isSupported() && (! /^\/admin/.test(window.location.pathname)) )  {
@@ -162,7 +162,15 @@
 
 		//============================================================= RESPONSIVE CONTENT
 		onResize: function() {
+			$('.page').each(function() {
+				var page = $(this) ;
+				page.css({'min-height': $(window).height()-80})
+			});
+		},
 
+		//============================================================= SHOW CONTENT ON LOAD
+		show: function() {
+			this.onResize();
 		}
 
 	})

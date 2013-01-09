@@ -20,7 +20,7 @@ async.series([
 		}); 
 	},
 	function(callback) {
-		asciimo.write("CV", 'starwars', function(art){
+		asciimo.write("SharedList", 'starwars', function(art){
 			console.log("\n====================================\n")
 			console.log(tools.trim(art).rainbow.bold);
 			console.log("\n")

@@ -23,6 +23,7 @@
         "live": true,
         "css": [
             'assets/vendors/bootstrap/bootstrap.css',
+            'assets/vendors/bootstrap/bootstrap-responsive.css',
             'assets/css/app.css'
         ],
         "js": [
@@ -30,6 +31,7 @@
             'assets/vendors/underscore.min.js',
             'assets/vendors/async.min.js',
             'assets/vendors/json3.min.js',
+            'assets/vendors/moment.min.js',
             'assets/vendors/browser.detect.js',
             'assets/vendors/backbone.min.js',
             'assets/vendors/mustache.min.js',
@@ -43,17 +45,18 @@
     },
     "www": {
         "site": {
-            "title": "MAJED by Alexa Chung",
-            "title_sufix": " | PRESSURE",
-            "desc": "MAJE vous propose de partir à NY pour un shooting exceptionnel avec Alexa Chung !",
+            "title": "Easy list sharing",
+            "title_sufix": " | G33KLabs",
+            "desc": "The easiest way to share list anonymously with your firends !",
             "language": 'fr-FR',
             "type": "website",
-            "keywords": "Alexa Chung, Mode, Maje, Majed, facebook, jeu concours, séjour, new york",
-            "image": "[[website]]/assets/img/logo_maje_share.jpg"
+            "keywords": "share tools, share list, connect friends",
+            "image": "[[website]]/assets/img/logo_maje_share.jpg",
+            "copyright": "© Copyright 2013 | G33kLabs"
         },
         "official": {
-            "website_url": "http://www.maje.com/",
-            "website": "www.maje.com"
+            "website_url": "http://shared-list.herokuapp.com/",
+            "website": "shared-list.herokuapp.com"
         },
         "analytics": {
             "google": process.env.GOOGLE_ANALYTICS
@@ -61,16 +64,7 @@
         "facebook": {
             "app_id": process.env.FACEBOOK_APP_ID,
             "app_secret": process.env.FACEBOOK_SECRET,
-            "perms": process.env.FACEBOOK_PERMS,
-            "pages": [
-                {
-                    "id": "52249877756",
-                    "url": "http://www.facebook.com/maje.officiel",
-                    "name": "maje.fr",
-                    "tab_url": "http://www.facebook.com/maje.officiel/app_135748023244067",
-                    "go_url": "https://majed-by-alexa.herokuapp.com/go/"
-                }
-            ]
+            "perms": process.env.FACEBOOK_PERMS
         }
     },
     "lang": {

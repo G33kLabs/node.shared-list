@@ -14,7 +14,7 @@ var app = express() ;
 var options = {};
 
 // Create server
-var server = http.createServer(app); 
+var server = connect(app); 
 
 ///////////////////////////////////////////////////////////// WEB API /////////////
 module.exports = Backbone.Model.extend({
@@ -84,6 +84,12 @@ module.exports = Backbone.Model.extend({
 			tools.debug('Bind route :: '+name+' :: '+route.path) ;
 			route.type = (route.type || 'get').toLowerCase() ;
 			app[route.type](route.path, route.exec) ;
+		})
+
+		// Add server addons
+		var addons = require('../../addons') ;
+		_.each(addons, function(addon) {
+			addon(server, app) ;
 		})
 
 		// Start server

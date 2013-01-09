@@ -1,6 +1,6 @@
 ///////////////////////////////////////// LIBS
 var mysql = require('mysql');
-var models = require('./model.js')
+var models = require(root_path+'/config/model.js')
 
 ///////////////////////////////////////// DATABASE CLASS
 var db_class = Backbone.Model.extend({
@@ -8,13 +8,14 @@ var db_class = Backbone.Model.extend({
 	// Defaults
 	defaults: {
 		link: process.env.MYSQL_DATABASE_URL,
-		dump: root_path+'/server/controllers/db/create.sql'
+		dump: root_path+'/config/dump.sql'
 	},
 
 	// Init & ask to open connection
 	initialize: function() {
 		this.set('models', models) ;
-		this.open() ;
+		if ( ! this.get('link') ) tools.error("MySql support disabled : no config found in ENV !")
+		else this.open() ;
 	},
 
 	// Open connection
