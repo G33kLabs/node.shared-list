@@ -1,0 +1,4 @@
+#!/bin/sh
+api_path="http://127.0.0.1:4000/api/device/event/"
+echo "$api_path?housecode=$X10_Housecode$X10_Unit&state=$X10_Function";
+nice -n 19 curl --max-time 10 "$api_path?housecode=$X10_Housecode$X10_Unit&state=$X10_Function" 2>/dev/null &

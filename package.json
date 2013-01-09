@@ -1,0 +1,35 @@
+{
+  "name": "G33kLabs.CV",
+  "version": "0.0.1",
+
+  "description": "My online CV | DE LA RUE Guillaume",
+
+  "dependencies": {
+    "async":     "x.x.x",
+    "underscore": "x.x.x",
+    "backbone": "x.x.x",
+    "hogan-express": "x.x.x",
+    "colors": "x.x.x",
+    "html-minifier": "x.x.x",
+    "mkdirp": "x.x.x",
+    "uglify-js": "1.x.x",
+    "uglifycss": "0.0.5",
+    "watchr": "x.x.x",
+    "node-uuid": "x.x.x",
+    "node-static": "x.x.x",
+    "mysql": "x.x.x",
+    "express": "x.x.x",
+    "connect": "x.x.x",
+    "request": "x.x.x",
+    "ua-parser": "x.x.x",
+    "locale": "x.x.x",
+    "connect-heroku-redis": "x.x.x"
+  },
+
+  "main": "app.js",
+
+  "engines": {
+    "node": ">= 0.8.0"
+  }
+
+}

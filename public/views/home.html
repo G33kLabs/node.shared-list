@@ -1,0 +1,41 @@
+<div id="welcome" class="wrapper">
+
+	<div id="play" class="wait {{#facebook.liked}}liked{{/facebook.liked}}">
+		<div class="scroller">
+			<div class="panel like_panel">
+				<span>{{lang.To take part, click on}}</span>
+				
+				<div class="like-button">
+					<div class="fb-like" href="{{facebook.page_url}}" data-send="false" data-layout="button_count" data-width="100" data-show-faces="false" data-colorscheme="light"></div>
+			    </div>
+			    
+			</div>
+			<div class="panel wait_panel">
+				<span>{{lang.Loading}}...</span>
+			</div>
+			<div class="panel play_panel">
+				<span>{{lang.Go to app}}</span>
+			</div>
+		</div>
+	</div>
+
+</div>
+
+<div class="welcome_footer wrapper">
+	This promotion is not supported or sponsored by Facebook. Participants provide information to the organisers and not to Facebook.
+</div>
+
+
+<!-- Les templates
+================================================== -->
+<script id="tpl_device_not_supported_fr_FR" type="text/template">
+Désolé mais votre appareil ne vous permet pas d'accéder à l'application.
+
+L'équipe Maje vous invite à vous connecter depuis votre ordinateur sur notre Fan Page Facebook .
+</script>
+
+<script id="tpl_device_not_supported_en_US" type="text/template">
+Sorry but your device doesn't allow you to go through the app.
+
+Maje team invites you to go to our Facebook Fan Page from your desktop browser.
+</script>

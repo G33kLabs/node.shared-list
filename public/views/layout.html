@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://ogp.me/ns/fb#" xmlns:addthis="http://www.addthis.com/help/api-spec" lang="en" class="no-js ie6 oldie"> <![endif]-->
+<!--[if IE 7]>    <html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://ogp.me/ns/fb#" xmlns:addthis="http://www.addthis.com/help/api-spec" lang="en" class="no-js ie7 oldie"> <![endif]-->
+<!--[if IE 8]>    <html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://ogp.me/ns/fb#" xmlns:addthis="http://www.addthis.com/help/api-spec" lang="en" class="no-js ie8 oldie"> <![endif]-->
+<!--[if gt IE 8]><!--> <html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://ogp.me/ns/fb#" xmlns:addthis="http://www.addthis.com/help/api-spec" lang="en" class="no-js"> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="apple-mobile-web-app-capable" content="yes" />  
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />  
+    <meta name="generator" content="Node.VaSH 0.2.0" /> <!-- leave this for stats -->
+
+    <title>{{&site.title}}{{&site.title_sufix}}</title>
+
+    <!-- Le styles -->
+    <link href="/packed/app.minify.css?v={{site.version}}" rel="stylesheet">
+    {{#site.css_addon}}<link href="{{&.}}?v={{site.version}}" rel="stylesheet">{{/site.css_addon}}
+
+    {{#site.author}}
+    <!-- Le author -->
+    <meta name="author" content="{{&site.author.name}}">
+    <link rel="author" href="{{&site.author.profile}}">
+    {{/site.author}}
+    
+    {{#site.rss}}
+    <!-- Le RSS -->
+    <link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="{{&site.rss}}">
+    {{/site.rss}}
+
+    <!-- Modernizr -->
+    <script src="/assets/vendors/modernizr-2.6.2.min.js"></script>
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- SEO -->
+    {{#site.desc}}<meta name="description" content="{{&site.desc}}{{&site.seo_desc}}" />{{/site.desc}}
+    {{#site.keywords}}<meta name="keywords" content="{{&site.keywords}}" />{{/site.keywords}}
+    {{#site.canonical}}<link rel="canonical" href="{{&site.canonical}}"/>{{/site.canonical}}
+    {{#site.shortlink}}<link rel='shortlink' href='{{&site.shortlink}}'/>{{/site.shortlink}}
+    <!-- /seo -->
+
+    <!-- Facebook SEO -->
+    {{#site.title}}<meta property="og:title" content="{{&site.title}}" />{{/site.title}}
+    {{#site.title}}<meta property="og:site_name" content="{{&site.title}}" />{{/site.title}}
+    {{#site.type}}<meta property="og:type" content="{{&site.type}}" />{{/site.type}}
+    {{#site.image}}<meta property="og:image" content="{{&site.image}}" />{{/site.image}} 
+    {{#site.desc}}<meta property="og:description" content="{{&site.desc}}" />{{/site.desc}}
+    {{#site.canonical}}<meta property="og:url" content="{{&site.canonical}}" />{{/site.canonical}}
+    {{#facebook.app_id}}<meta property="fb:app_id" content="{{&facebook.app_id}}" />{{/facebook.app_id}}
+    {{#facebook.admins}}<meta property="fb:admins" content="{{&facebook.admins}}" />{{/facebook.admins}}
+    <!-- / Facebook SEO -->
+
+    <!-- Twitter Cards SEO -->
+    <meta name="twitter:card" content="summary" />
+    {{#site.author.social.twitter.pseudo}}<meta name="twitter:site" content="{{&site.author.social.twitter.pseudo}}" />{{/site.author.social.twitter.pseudo}}
+    {{#site.author.social.twitter.pseudo}}<meta name="twitter:creator" content="{{&site.author.social.twitter.pseudo}}" />{{/site.author.social.twitter.pseudo}}
+    {{#site.canonical}}<meta name="twitter:url" content="{{&site.canonical}}" />{{/site.canonical}}
+    {{#site.title}}<meta name="twitter:title" content="{{&site.title}}" />{{/site.title}}
+    {{#site.desc}}<meta name="twitter:description" content="{{&site.desc}}" />{{/site.desc}}
+    {{#site.image}}<meta name="twitter:image" content="{{&site.image}}" />{{/site.image}} 
+    <!-- / Twitter Cards SEO -->
+
+    <!-- Le fav and touch icons -->
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-ipad-retina.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/apple-touch-iphone4.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/apple-touch-ipad.png">
+    <link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png">
+  </head>
+
+  <body class="lang-{{user_lang}} fan-{{facebook.page_id}}">
+
+    <!-- Le Facebook API 
+    ================================================== -->
+    <div id="fb-root" data-appid="{{&facebook.app_id}}" data-perms="{{&facebook.perms}}" data-likeid="{{&facebook.page_id}}" data-likeurl="{{&facebook.page_url}}" data-taburl="{{&facebook.tab_url}}" data-gourl="{{&facebook.go_url}}" data-appurl="{{&facebook.app_url}}" data-locale="{{user_lang}}" data-country="{{user_country}}" data-liked="{{&facebook.liked}}"></div>
+
+    <!-- Le Trackin Google Analytics
+    ================================================== -->
+    {{^isAdmin}}<div id="ga-root" data-code="{{analytics.google}}"></div>{{/isAdmin}}
+
+
+    <!-- Old browers war
+    ================================================== -->
+    <!--[if lt IE 8]>
+    <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+    <![endif]-->
+
+    <!-- Le container 
+    ================================================== -->
+    <div class="container-fluid" id="content">
+        <div id="alert-area"></div>
+        <div class="row-fluid">
+            <div class="span12" id="page_content">
+                {{{ yield }}}
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div> 
+
+    <!-- Le footer
+    ================================================== -->
+    <footer id="footer">
+        <p>{{&site.copyright}}</p>
+    </footer>
+
+    <!-- Le pixel tracking
+    ================================================== -->
+    <img src="/t/?path={{site.path}}&source={{&facebook.page_id}}">
+
+    <!-- Le debug mode
+    ================================================== -->
+    <script type="text/javascript">
+        var debugging = {{site.dev}}; 
+        if (typeof console == "undefined") window.console = { log: function() {} }; 
+        else if (!debugging || typeof console.log == "undefined") console.log = function() {};  
+    </script>
+
+    <!-- Le javascript
+    ================================================== -->
+    <script data-main="/packed/app.minify.js" src="/assets/vendors/require.min.js" {{#isAdmin}}data-is-admin="true"{{/isAdmin}} data-addon="{{#site.js_addon}}{{&.}}?v={{site.version}}|{{/site.js_addon}}" id="require-loader"></script>
+
+  </body>
+</html>

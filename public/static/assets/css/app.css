@@ -1,0 +1,44 @@
+@font-face {
+ font-family: "Century Gothic";
+ src: url("/assets/fonts/gothic.eot") /* EOT file for IE */
+}
+@font-face {
+ font-family: "Century Gothic";
+ src: url("/assets/fonts/gothic.ttf") /* TTF file for CSS3 browsers */
+}
+
+/*======================================================== BASE **/
+* {
+	font-family: "Century Gothic","Apple Gothic",AppleGothic,"URW Gothic L","Avant Garde",Futura,sans-serif;
+	font-size: 12px;
+}
+
+html {
+    background: #000 !important;
+}
+
+/*======================================================== HEADER & NAVBAR **/
+#content {
+    padding-right: 0;
+    padding-left: 0;
+}
+header {
+    padding-top: 20px;
+}
+
+footer {
+    text-align: center;
+}
+/*======================================================== WRAPPER **/
+.wrapper {
+	position: relative;
+	display: block;
+    margin: 0 auto;
+    width: 810px;
+}
+
+/*======================================================== INSTALL CHROME FRAME **/
+.chromeframe {
+    text-align: center;
+    padding: 10px 0;
+}
