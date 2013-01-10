@@ -21,7 +21,7 @@
         // -> Open a shred list
         var textarea = $('<textarea id="pad" disabled>'+elems.editor_loading+'</textarea>'); 
         elems.editor.css({display: 'block'}) ;
-        $('#editor h4').html('Share link : <a href="'+window.location.href+'">'+window.location.href+'</a>')
+        elems.editor.find('h4').html('Share link : <a href="'+window.location.href+'">'+window.location.href+'</a>')
         $('#pad_container').html(textarea) ;
 
         // -> Open connexion
