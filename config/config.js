@@ -56,7 +56,8 @@
         },
         "official": {
             "website_url": "http://shared-list.herokuapp.com/",
-            "website": "shared-list.herokuapp.com"
+            "website": "shared-list.herokuapp.com",
+            "version": "1.0.1"
         },
         "analytics": {
             "google": process.env.GOOGLE_ANALYTICS,

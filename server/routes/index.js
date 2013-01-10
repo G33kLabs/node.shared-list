@@ -122,6 +122,7 @@
         config.site = _.extend({
            dev: process.env.DEV ? true : false,
            version: asset_version,
+           official_version: config.official.version,
            js_addon: [],
            css_addon: []
         }, config.site) ;
