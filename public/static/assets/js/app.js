@@ -176,8 +176,6 @@
 	})
 
 	// -> Init application UI
-	$(document).ready(function() {
-		window.app = new ApplicationUI() ;
-	}); 
+	window.app = new ApplicationUI() ;
 
 }).apply(this) ;

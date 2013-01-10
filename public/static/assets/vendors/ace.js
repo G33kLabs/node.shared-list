@@ -1572,14 +1572,13 @@ exports.isMac = (os == "mac");
 exports.isLinux = (os == "linux");
 
 exports.isIE = $.browser.msie;
-    
-exports.isOldIE = exports.isIE && $.browser.version.slice(0,3) < 9;
-exports.isGecko = exports.isMozilla = window.controllers && window.navigator.product === "Gecko";
-exports.isOldGecko = exports.isGecko && parseInt((navigator.userAgent.match(/rv\:(\d+)/)||[])[1], 10) < 4;
-exports.isOpera = window.opera && Object.prototype.toString.call(window.opera) == "[object Opera]";
-exports.isWebKit = parseFloat(ua.split("WebKit/")[1]) || undefined;
 
-exports.isChrome = parseFloat(ua.split(" Chrome/")[1]) || undefined;
+exports.isOldIE = exports.isIE && $.browser.version.slice(0,3) < 9;
+exports.isGecko = exports.isMozilla = $.browser.mozilla;
+exports.isOldGecko = exports.isGecko && parseInt((navigator.userAgent.match(/rv\:(\d+)/)||[])[1], 10) < 4;
+exports.isWebKit = $.browser.webkit || undefined;
+
+exports.isChrome = $.browser.webkit || undefined;
 
 exports.isAIR = ua.indexOf("AdobeAIR") >= 0;
 
