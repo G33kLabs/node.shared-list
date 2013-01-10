@@ -97,7 +97,7 @@
             return {
                 name: doc.name,
                 version: doc.version,
-                modified: $.now()
+                modified: doc.modified||$.now()
             }
         }) ;
 
