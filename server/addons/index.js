@@ -1,2 +1,2 @@
 exports.sharejs = require('./sharejs') ;
-exports.paypal = require('./paypal') ;
+//exports.paypal = require('./paypal') ;
