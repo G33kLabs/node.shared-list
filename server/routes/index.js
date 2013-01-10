@@ -120,7 +120,6 @@
 
         // Set defaults
         config.site = _.extend({
-           full: true,
            dev: process.env.DEV ? true : false,
            version: asset_version,
            js_addon: [],
@@ -131,10 +130,7 @@
         //console.log(config)
 
         // Debug
-
-        var log_datas = {
-            path: req.path
-        }; 
+        var log_datas = { path: req.path }; 
         _.each(req.session, function(v, k) {
             if (k!='cookie') log_datas[k] = v;
         }) ;

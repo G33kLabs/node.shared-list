@@ -145,9 +145,11 @@
       </div>
     </div>
 
+    {{#analytics.local_pixel}}
     <!-- Le pixel tracking
     ================================================== -->
-    {{#analytics.local_pixel}}<img src="/t/?path={{site.path}}&source={{&facebook.page_id}}">{{/analytics.local_pixel}}
+    <img src="/t/?path={{site.path}}&source={{&facebook.page_id}}">
+    {{/analytics.local_pixel}}
 
     <!-- Le debug mode
     ================================================== -->
