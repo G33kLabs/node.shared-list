@@ -21,9 +21,6 @@
 			// -> Load Google Analytics
 			this.loadGA() ;
 
-			// -> Init display
-			this.show() ;
-
         	// DISPLAY ERROR MESSAGE FOR UNSUPPORTED DEVICES
 	        if ( ! self.isSupported() && (! /^\/admin/.test(window.location.pathname)) )  {
 	            var tpl = tools.tpl('tpl_device_not_supported_'+$('#fb-root').data('locale')) ;
@@ -81,7 +78,7 @@
 				return url != '' ;
 			}) ;
 			if ( ! addons.length ) {
-				self.loadFB() ;
+				self.show() ;
 				return false;
 			}
 
@@ -90,13 +87,14 @@
 					callback(null) ;	
 				})
 			}, function() {
-				self.loadFB() ;
+				self.show() ;
 			}); 
 			
 		},
 
 		//============================================================= LOAD FACEBOOK API
 		loadFB: function() {
+			return;
 			var fb_root = $('#fb-root') ;
 
 			// Init Facebook API
@@ -170,6 +168,7 @@
 
 		//============================================================= SHOW CONTENT ON LOAD
 		show: function() {
+			//this.loadFB() ;
 			this.onResize();
 		}
 
