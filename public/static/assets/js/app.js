@@ -94,8 +94,13 @@
 
 		//============================================================= LOAD FACEBOOK API
 		loadFB: function() {
-			return;
 			var fb_root = $('#fb-root') ;
+
+			// Check if facebook is configured
+			if ( ! fb_root.data('appid') ) {
+				console.log("Facebook JS API could not be loaded : No application configured.")
+				return;
+			}
 
 			// Init Facebook API
 			$.facebook({
@@ -171,7 +176,7 @@
 
 		//============================================================= SHOW CONTENT ON LOAD
 		show: function() {
-			//this.loadFB() ;
+			this.loadFB() ;
 			this.onResize();
 		}
 

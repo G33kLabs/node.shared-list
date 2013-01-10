@@ -33,11 +33,11 @@
 
         ////////////////////////////////////////////////////////////////// DEBUG
         if ( process.env.DEV ) {
-            req.session.fb_user = req.session.fb_user || {} ;
-            req.session.fb_user.country = 'fr' ;
-            req.session.fb_user.locale = 'fr_FR' ;
+            //req.session.fb_user = req.session.fb_user || {} ;
+            //req.session.fb_user.country = 'fr' ;
+            //req.session.fb_user.locale = 'fr_FR' ;
 
-            req.session.fb_page = req.session.fb_page || {} ;
+            //req.session.fb_page = req.session.fb_page || {} ;
             //req.session.fb_page.liked = false;
             //req.session.fb_page.id = _.last(config.facebook.pages).id;
             //req.session.fb_page.id = "203026316407329"; 
@@ -89,7 +89,7 @@
         if ( req.query.lang ) user_lang = req.query.lang; 
 
         // Debug
-        console.log('Lang >> '+user_lang)
+        //console.log('Lang >> '+user_lang)
 
         // Check that language exists else set to default
         user_lang = config.lang[user_lang] ? user_lang : default_lang;
@@ -131,14 +131,21 @@
         //console.log(config)
 
         // Debug
+
+        var log_datas = {
+            path: req.path
+        }; 
+        _.each(req.session, function(v, k) {
+            if (k!='cookie') log_datas[k] = v;
+        }) ;
+
         if ( ! config.isAdmin ) {
-            tools.log('['+tools.getClientIp(req)+ '] '+req.path, 'yellow') ;
-            tools.log('['+tools.getClientIp(req)+ '] '+JSON.stringify(req.session), 'yellow') ;
+            tools.log('['+tools.getClientIp(req)+ '] | '+JSON.stringify(log_datas), 'yellow') ;
         }
 
         else {
             try {
-                tools.log('['+tools.getClientIp(req)+ '] '+"Admin :: "+req.session.fb_admin.me.email, 'brown') ;
+                tools.log('['+tools.getClientIp(req)+ '] | '+req.path+' | '+"Admin :: "+req.session.fb_admin.me.email, 'brown') ;
             } catch(e) {} ;
         }
 
