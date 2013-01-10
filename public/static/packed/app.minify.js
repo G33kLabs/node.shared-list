@@ -15166,7 +15166,7 @@ $timers = {} ;
 		onResize: function() {
 			$('.page').each(function() {
 				var page = $(this) ;
-				page.css({'min-height': $(window).height()-80})
+				page.css({'min-height': $(window).height()-40})
 			});
 		},
 

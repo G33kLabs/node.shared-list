@@ -1,0 +1,15 @@
+<h2>Confirmation  </h2>
+
+<p>Awesome! Please confirm that the following details are correct and we will ship to you pronto!</p>
+
+<table>
+  <tr>
+    <td>{{paypalResponse.firstname}} {{paypalResponse.lastname}}</td>
+  </tr>
+  <tr><td>Email : {{paypalResponse.email}}</td></tr>
+  <tr><td>Amount : {{paypalResponse.paymentrequest.0.amt}}</td></tr>
+</table>
+
+<form action="/paypal/final" method="POST">
+  <input type="submit" value="Pay Now!">
+</form>

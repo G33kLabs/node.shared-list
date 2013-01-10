@@ -17,6 +17,22 @@ html {
    /* background: #000 !important; */
 }
 
+#content {
+	position: relative;
+	display: block;
+	padding-top: 40px;
+	-webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.wrapper {
+	position: relative;
+	display: block;
+	width: 90%;
+	margin: 0 auto;
+}
+
 /*======================================================== HEADER & NAVBAR **/
 #content {
     padding-right: 0;
