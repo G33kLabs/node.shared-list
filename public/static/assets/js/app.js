@@ -141,18 +141,21 @@
 		//============================================================= GOOGLE ANALYTICS TRACKING
 		loadGA: function() {
 			var code = $('#ga-root').data('code') ;
+			var local_pixel = $('#ga-root').data('pixel') ;
 			if ( code ) {
-				/*
-				$.gaTracker.onTrack = function(path) {
-					$.ajax({
-						url: '/t/?path='+encodeURIComponent(path)+'&isAjax=true&source='+$('#fb-root').data('likeid'),
-						type: 'get',
-						complete: function() {
-							console.log('Tracking sended')
-						}
-					})
+
+				if ( local_pixel ) {
+					$.gaTracker.onTrack = function(path) {
+						$.ajax({
+							url: local_pixel+'?path='+encodeURIComponent(path)+'&isAjax=true&source='+$('#fb-root').data('likeid'),
+							type: 'get',
+							complete: function() {
+								console.log('Tracking sended')
+							}
+						})
+					}
 				}
-				*/
+
 				$.gaTracker.init(code);
 			}
 		},

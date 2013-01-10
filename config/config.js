@@ -49,10 +49,9 @@
             "title": "Easy list sharing",
             "title_sufix": " | G33KLabs",
             "desc": "The easiest way to share list anonymously with your firends !",
-            "language": 'fr-FR',
             "type": "website",
             "keywords": "share tools, share list, connect friends",
-            "image": "[[website]]/assets/img/logo_maje_share.jpg",
+            "image": "[[website]]/assets/img/logo_share.jpg",
             "copyright": "© Copyright 2013 | G33kLabs"
         },
         "official": {
@@ -60,7 +59,8 @@
             "website": "shared-list.herokuapp.com"
         },
         "analytics": {
-            "google": process.env.GOOGLE_ANALYTICS
+            "google": process.env.GOOGLE_ANALYTICS,
+            //"local_pixel": "/t/"
         },
         "facebook": {
             "app_id": process.env.FACEBOOK_APP_ID,

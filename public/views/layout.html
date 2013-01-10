@@ -79,7 +79,7 @@
 
     <!-- Le Trackin Google Analytics
     ================================================== -->
-    {{^isAdmin}}<div id="ga-root" data-code="{{analytics.google}}"></div>{{/isAdmin}}
+    {{^isAdmin}}<div id="ga-root" data-code="{{analytics.google}}" data-pixel="{{analytics.local_pixel}}"></div>{{/isAdmin}}
 
     <!-- Old browers war
     ================================================== -->
@@ -147,7 +147,7 @@
 
     <!-- Le pixel tracking
     ================================================== -->
-    <img src="/t/?path={{site.path}}&source={{&facebook.page_id}}">
+    {{#analytics.local_pixel}}<img src="/t/?path={{site.path}}&source={{&facebook.page_id}}">{{/analytics.local_pixel}}
 
     <!-- Le debug mode
     ================================================== -->

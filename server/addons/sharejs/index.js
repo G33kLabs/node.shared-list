@@ -7,7 +7,7 @@ module.exports = function(server, app) {
 
 	var redisToGo = process.env.REDISTOGO_URL ? parse(process.env.REDISTOGO_URL) : parse("redis://127.0.0.1:6379"); 
 
-	tools.log('Open connexion to redis : '+JSON.stringify(redisToGo));
+	tools.log('Open connexion to redis : '+redisToGo.protocol+'//'+redisToGo.host+'...');
 
 	sharejs.server.attach(server, {
 		db: {
