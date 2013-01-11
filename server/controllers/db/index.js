@@ -35,6 +35,7 @@ module.exports = Backbone.Model.extend({
 			if ( err ) tools.error("ERROR with mysql connection :: "+err.code) ;
 			else {
 				tools.log('Database link is now open !') ;
+				self.connection_lost = false ;
 				self.install() ;
 			}
 		});
@@ -126,19 +127,32 @@ module.exports = Backbone.Model.extend({
 	handleDisconnect: function(connection) {
 		var self = this;
 
+		// Wait reconnection
+		var waitReconnectTimer = null;
+		var waitReconnect = function() {
+			self.connection_lost = true ;
+			self.open() ;
+			if ( waitReconnectTimer ) clearTimeout(waitReconnectTimer) ;
+			waitReconnectTimer = setTimeout(function() {
+				if (self.connection_lost) {
+					waitReconnect() ;
+				}
+			}, 5000) ;
+		}
+
 		// Bind error
 		connection.on('error', function(err) {
 			if (!err.fatal) return;
 			if (err.code !== 'PROTOCOL_CONNECTION_LOST') { throw err;}
 			tools.warning('Re-connecting lost connection: ' + err.stack);
-			self.open() ;
+			waitReconnect() ;
 		});
 
 		// Bind close (accident or not)
 		connection.on('close', function(err) {
 			if (err) {
 				tools.warning('Re-connecting server close connection: ' + err.stack);
-				self.open() ;
+				waitReconnect() 
 			} else {
 				tools.log('Connection closed normally.');
 			}
