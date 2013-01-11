@@ -135,6 +135,7 @@ module.exports = Backbone.Model.extend({
 			if ( waitReconnectTimer ) clearTimeout(waitReconnectTimer) ;
 			waitReconnectTimer = setTimeout(function() {
 				if (self.connection_lost) {
+					tools.warning('Connection still lost.. Retry to connect after 5 seconds of pause...')
 					waitReconnect() ;
 				}
 			}, 5000) ;
