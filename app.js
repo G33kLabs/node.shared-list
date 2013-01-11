@@ -10,7 +10,7 @@ GLOBAL.root_path = process.cwd() ;
 GLOBAL.tools = require('./server/libs/tools.kit') ;
 var asciimo = require('./server/libs/asciimo').Figlet
 
-//////////////////////////////////////////////////////// WELCOME MESSAGE ///////////// 
+////////////////////////////////////////////////////////// WELCOME MESSAGE /////////////
 async.series([
 	function(callback) {
 		asciimo.write("G33k", 'Banner', function(art){
