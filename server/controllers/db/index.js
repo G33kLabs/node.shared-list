@@ -44,7 +44,7 @@ module.exports = Backbone.Model.extend({
 	// Close connection
 	close: function() {
 		this.db.close(function() {
-			tools.log('Database closed properly !')
+			tools.log('Database closed properly !');
 		})
 	},
 
