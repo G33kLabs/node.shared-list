@@ -28,7 +28,7 @@ module.exports = Backbone.Model.extend({
 		self.db = mysql.createConnection(self.get('link'));
 
 		// Handle Disconnections
-		self.handleDisconnect(self.db);  
+		self.handleDisconnect(self.db);
 
 		// Open link
 		self.db.connect(function(err) {
