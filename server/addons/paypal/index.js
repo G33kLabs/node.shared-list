@@ -50,7 +50,6 @@ module.exports =  function(server, app) {
 
 		// User canceled payment
 		.on('failure', function(response){ 
-			console.log(response)
 			res.render('paypal_error.html', {error:response.errors[0].longmessage}) 
 		})
 
@@ -89,18 +88,20 @@ module.exports =  function(server, app) {
 
 		console.log("Receive response :: "+req.path)
 
+		// -> Build final payment request
 		var paymentrequest = [];
-		console.log(req.session.paypal_paymentrequest) ;
 		req.session.paypal_paymentrequest.forEach(function(order){
        		paymentrequest.push({amt:order.amt, paymentaction:'Sale', currencycode: 'EUR'})
      	})
 
+		// -> Build complete request
 		var request = {
 			token: req.session.paypal_token,
 			payerid: req.session.paypal_payerid,
 			paymentrequest: paymentrequest
 		}
 
+		// -> Apply buy
 		client.doExpressCheckoutPayment(request)
 			.on('success', function(response){
 				res.render('paypal_final.html')

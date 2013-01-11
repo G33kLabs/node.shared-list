@@ -12,9 +12,6 @@
     //////////////////////////////////////////////// VERSION FOR ASSETS
     var asset_version = uuid.v1().replace(/\-/g, '') ;
 
-    //////////////////////////////////////////////// OPEN DATABASE
-    GLOBAL.db = require('../controllers/db') ;
-
     //////////////////////////////////////////////// HELPERS
     getUserLocals = function(req) {
         var match, config = _.extend({}, Core.config().www);

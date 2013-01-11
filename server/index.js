@@ -30,6 +30,17 @@ Application.prototype = {
 				self.Controllers.config = self.loadConfig(callback); 
 			},
 
+			// -> Open database
+			OpenDB: function(callback) {
+				var DB = require('./controllers/db') ;
+			    GLOBAL.db = new DB({
+			    	link: process.env.MYSQL_DATABASE_URL,
+			    	//dump: root_path+'/config/dump.sql',
+					//models: require(root_path+'/config/model.js')
+			    }) ;
+			    callback(null, true);
+			},
+
 			// -> Start WebServer
 			StartWWW: function(callback) {
 				self.loadWWW(function(err, res) {

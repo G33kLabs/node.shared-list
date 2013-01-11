@@ -1,19 +1,18 @@
 ///////////////////////////////////////// LIBS
 var mysql = require('mysql');
-var models = require(root_path+'/config/model.js')
 
 ///////////////////////////////////////// DATABASE CLASS
-var db_class = Backbone.Model.extend({
+module.exports = Backbone.Model.extend({
 
 	// Defaults
 	defaults: {
-		link: process.env.MYSQL_DATABASE_URL,
-		dump: root_path+'/config/dump.sql'
+		link: false,
+		dump: false,
+		models: false
 	},
 
 	// Init & ask to open connection
 	initialize: function() {
-		this.set('models', models) ;
 		if ( ! this.get('link') ) tools.error("MySql support disabled : no config found in ENV !")
 		else this.open() ;
 	},
@@ -33,10 +32,20 @@ var db_class = Backbone.Model.extend({
 
 		// Open link
 		self.db.connect(function(err) {
-			tools.log('Database link is now open !') ;
-			self.install() ;
+			if ( err ) tools.error("ERROR with mysql connection :: "+err.code) ;
+			else {
+				tools.log('Database link is now open !') ;
+				self.install() ;
+			}
 		});
 
+	},
+
+	// Close connection
+	close: function() {
+		this.db.close(function() {
+			tools.log('Database closed properly !')
+		})
 	},
 
 	// Alias for query
@@ -62,10 +71,14 @@ var db_class = Backbone.Model.extend({
 	// Create mysql structure if necessary
 	install: function(callback) {
 		var self = this;
+
+		if ( ! self.get('dump') ) return _.isFunction(callback) ? callback('No dump file to import !') : false;
+
 		async.series({
 
 			// -> Check
 			check: function(callback) {
+				tools.debug('Check if schema exists...')
 				self.db.query('SELECT * FROM usr LIMIT 1', function(err, res, rows) {
 					if ( err && err.code == 'ER_NO_SUCH_TABLE' ) callback(null, true); 
 					else callback('EXISTS') ;
@@ -75,6 +88,7 @@ var db_class = Backbone.Model.extend({
 			// -> At this point, table not yet exists
 			read_dump: function(callback) {
 				var that = this;
+				tools.debug('Read dump file...')
 				fs.readFile(self.get('dump'), 'utf8', function(err, res) {
 					if ( res ) {
 						res = tools.trim(_.reject(res.split("\n"), function(row) {
@@ -101,6 +115,7 @@ var db_class = Backbone.Model.extend({
 
 		// Trigger callback
 		function(err, res) {
+			console.log(err, res)
 			if ( err == 'EXISTS' ) (err = null) && (res = true);
 			if ( err ) tools.error(err) ;
 			if ( _.isFunction(callback) ) callback(err, res) ;
@@ -131,6 +146,3 @@ var db_class = Backbone.Model.extend({
 
 	}
 })
-
-///////////////////////////////////////// EXPORTS CLASS
-module.exports = new db_class() ;
