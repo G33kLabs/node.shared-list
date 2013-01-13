@@ -107,11 +107,11 @@
         ////////////////////////////////////////////////////////////////// LANG
         config.site.lang_supported = Core.Controllers.i18n.getSupported();
         config.site.lang = Core.Controllers.i18n.getLocale(req.locale);
-        console.log(config.site.lang)
 
         ////////////////////////////////////////////////////////////////// TEMPLATE
         // Get dynamic website url (http or https detection)
         config.site.website = req.protocol + '://' + req.headers.host;
+        console.log(config.site.website, req.protocol)
         config.site.canonical = config.site.website + req.url;
         config.site.path = encodeURIComponent(req.url);
 
