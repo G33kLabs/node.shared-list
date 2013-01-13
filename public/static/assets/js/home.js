@@ -153,11 +153,6 @@
         // -> Load ShareJS
         async.series([
         	function(callback) {
-        		require(['/assets/vendors/ace.js'], function() {
-        			callback(null);
-        		})
-        	},
-        	function(callback) {
         		require(['/channel/bcsocket.js'], function() {
         			callback(null);
         		})
@@ -169,11 +164,6 @@
         	},
         	function(callback) {
         		require(['/share/textarea.js'], function() {
-        			callback(null);
-        		})
-        	},
-        	function(callback) {
-        		require(['/share/ace.js'], function() {
         			callback(null);
         		})
         	}

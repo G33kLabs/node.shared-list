@@ -22,7 +22,6 @@
     "connect": "x.x.x",
     "request": "x.x.x",
     "ua-parser": "x.x.x",
-    "locale": "x.x.x",
     "share": "x.x.x",
     "paynode": "x.x.x",
     "redis": "x.x.x",

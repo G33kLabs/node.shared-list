@@ -1,9 +1,29 @@
 {
 	"Users": [
         {
-            "fb_id": '582526084', 
             "role": 'admin',
-            "name": 'Guillaume DE LA RUE'
+            "name": 'Guillaume DE LA RUE',
+            "social": {
+                'Twitter': {
+                    id: '244561106',
+                    pseudo: '@G33kLabs',
+                    profile: 'https://twitter.com/G33kLabs'
+                },
+                'Facebook': {
+                    id: '582526084',
+                    pseudo: '@Guiltouf',
+                    profile: 'https://www.facebook.com/guiltouf'
+                },
+                'Github': {
+                    pseudo: '@G33kLabs',
+                    profile: 'https://github.com/G33kLabs'
+                },
+                'Google': {
+                    id: '115555146160120072472',
+                    pseudo: '@G33k',
+                    profile: 'https://plus.google.com/115555146160120072472/'
+                }
+            }
         }
     ],
 	"Server": {
