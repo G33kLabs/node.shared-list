@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]> <html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://ogp.me/ns/fb#" xmlns:addthis="http://www.addthis.com/help/api-spec" lang="en" class="no-js ie6 oldie"> <![endif]-->
-<!--[if IE 7]>    <html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://ogp.me/ns/fb#" xmlns:addthis="http://www.addthis.com/help/api-spec" lang="en" class="no-js ie7 oldie"> <![endif]-->
-<!--[if IE 8]>    <html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://ogp.me/ns/fb#" xmlns:addthis="http://www.addthis.com/help/api-spec" lang="en" class="no-js ie8 oldie"> <![endif]-->
-<!--[if gt IE 8]><!--> <html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://ogp.me/ns/fb#" xmlns:addthis="http://www.addthis.com/help/api-spec" lang="en" class="no-js"> <!--<![endif]-->
+<!--[if lt IE 7]> <html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://ogp.me/ns/fb#" xmlns:addthis="http://www.addthis.com/help/api-spec" lang="{{site.lang.short}}" class="no-js ie6 oldie"> <![endif]-->
+<!--[if IE 7]>    <html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://ogp.me/ns/fb#" xmlns:addthis="http://www.addthis.com/help/api-spec" lang="{{site.lang.short}}" class="no-js ie7 oldie"> <![endif]-->
+<!--[if IE 8]>    <html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://ogp.me/ns/fb#" xmlns:addthis="http://www.addthis.com/help/api-spec" lang="{{site.lang.short}}" class="no-js ie8 oldie"> <![endif]-->
+<!--[if gt IE 8]><!--> <html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://ogp.me/ns/fb#" xmlns:addthis="http://www.addthis.com/help/api-spec" lang="{{site.lang.short}}" class="no-js"> <!--<![endif]-->
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -10,7 +10,12 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black" />  
     <meta name="generator" content="Node.VaSH 0.2.0" /> <!-- leave this for stats -->
 
-    <title>{{&site.title}}{{&site.title_sufix}}</title>
+    <title>{{&site.title}}{{&site.title_sufix}}</title> 
+
+    <!-- Alternates languages -->
+    {{#site.lang_supported}}
+    <link rel="alternate" hreflang="{{short}}" href="{{site.website}}/{{short}}/" />
+    {{/site.lang_supported}}
 
     <!-- Le styles -->
     <link href="/packed/app.minify.css?v={{site.version}}" rel="stylesheet">
@@ -103,11 +108,11 @@
           <!-- Be sure to leave the brand out there if you want it shown -->
           <a class="brand" href="#">Shared List</a>
           <ul class="nav">
-            <li class="active"><a href="#home">Home</a></li>
+            <li class="active"><a href="#home">{{lang.Home}}</a></li>
             <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Documents <b class="caret"></b></a>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{lang.Documents}} <b class="caret"></b></a>
             <ul class="dropdown-menu" id="documents_list">
-              <li><a href="#new">Create new</a></li>
+              <li><a href="#new">{{lang.Create new}}</a></li>
             </ul>
           </li>
           </ul>
@@ -115,7 +120,15 @@
           <!-- Everything you want hidden at 940px or less, place within here -->
           <div class="nav-collapse collapse  pull-right">
             <ul class="nav secondary-nav">
-                <li><a><span class="label label-warning" id="status" style="display:none;">Loading...</span></a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="/assets/img/flags/16/{{site.lang.country}}.png">&nbsp;&nbsp;{{&site.lang.name}} <b class="caret"></b></a>
+                    <ul class="dropdown-menu" id="lang_toggle">
+                        {{#site.lang_supported}}
+                        <li><a href="/{{short}}/" data-short="{{short}}" title="Use {{name}} as language"><img src="/assets/img/flags/16/{{country}}.png">&nbsp;&nbsp;{{name}}</a></li>
+                        {{/site.lang_supported}}
+                    </ul>
+                </li>
+                <li><a><span class="label label-warning" id="status" style="display:none;">{{lang.Loading}}...</span></a></li>
             </ul>
           </div>
      

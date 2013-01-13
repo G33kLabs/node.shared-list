@@ -3,8 +3,19 @@
     // -> DOM
     var elems = {
         editor : $('#pad_editor'),
-        editor_loading: $('#tpl_textarea_default').html(),
-        status: $('#status')
+        editor_container: $('#pad_container'),
+        status: $('#status'),
+        docs_list: $('#documents_list')
+    }
+
+    // -> TPL
+    var tpl = {
+        editor: $('#tpl_textarea_default').html(),
+        docs_list: elems.docs_list.html(),
+        online: $('#tpl_lang_online').html(),
+        offline: $('#tpl_lang_offline').html(),
+        error: $('#tpl_lang_error').html(),
+        connecting: $('#tpl_lang_connecting').html(),
     }
 
     // -> Overload app
@@ -18,11 +29,22 @@
         // -> Connection status display
         var status = elems.status.show(0);
 
-        // -> Open a shred list
-        var textarea = $('<textarea id="pad" disabled>'+elems.editor_loading+'</textarea>'); 
-        elems.editor.css({display: 'block'}) ;
-        elems.editor.find('h4').html('Share link : <a href="'+window.location.href+'">'+window.location.href+'</a>')
-        $('#pad_container').html(textarea) ;
+        // -> Open a shared list
+        var link = app.parse_url(window.location.href) ;
+        var permalink = link.protocol+'//'+link.hostname+(link.port!=80?':'+link.port:'')+'/'+link.hash;
+        var template = app.render(tpl.editor, {
+            link: permalink
+        }); 
+
+        // -> Replace language
+        $('#lang_toggle a').each(function() {
+            var el = $(this) ;
+            el.attr('href', '/'+el.data('short')+'/'+link.hash)
+        }) ;
+
+        // -> Inject new textarea into DOM
+        elems.editor_container.html(template) ;
+        var textarea = elems.editor_container.find('textarea') ;
 
         // -> Open connexion
         connection = sharejs.open(activeDoc, 'text', function(error, doc) {
@@ -43,10 +65,10 @@
                 console.log(state, connection)
             });
         };
-        register('ok', 'success', 'Online');
-        register('connecting', 'warning', 'Connecting...');
-        register('disconnected', 'important', 'Offline');
-        register('stopped', 'important', 'Error'); 
+        register('ok', 'success', tpl.online);
+        register('connecting', 'warning', tpl.connecting);
+        register('disconnected', 'important', tpl.offline);
+        register('stopped', 'important', tpl.error); 
 
     }
 
@@ -92,11 +114,12 @@
         }
 
         // -> Update html dropdown list
-        var html = '<li><a href="#new">Create new</a></li><li class="divider"></li>'; 
+        var html = tpl.docs_list; 
+        if ( docs.length ) html += '<li class="divider"></li>' ;
         _.each(docs, function(doc) { 
             html += '<li><a href="#'+doc.name+'" id="'+doc.name+'"><b>'+doc.name+'</b> <em>('+moment(doc.modified).format('YYYY-MM-DD HH:mm:ss')+')</em></a></li>';
         });
-        $('#documents_list').html(html);
+        elems.docs_list.html(html);
 
         // -> Update docs name into localStorage for future visits
         var storeDatas = _.map(docs, function(doc) {

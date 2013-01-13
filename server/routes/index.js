@@ -74,6 +74,8 @@
         } 
 
         ////////////////////////////////////////////////////////////////// ADD LANG INTO CONFIG
+
+/*
         config = _.extend({ lang: Core.config().lang }, config)
 
         ////////////////////////////////////////////////////////////////// LANG
@@ -96,11 +98,16 @@
 
         // If default language is same as user : send keys
         config.lang = config.lang[user_lang] ;
-
+*/
         ////////////////////////////////////////////////////////////////// COUNTRY
         config.user_country = (((req.session.fb_user && req.session.fb_user.country) ? req.session.fb_user.country : ''));
 
         //console.log("User language :: "+user_lang, req.session.fb_user ) ;  
+
+        ////////////////////////////////////////////////////////////////// LANG
+        config.site.lang_supported = Core.Controllers.i18n.getSupported();
+        config.site.lang = Core.Controllers.i18n.getLocale(req.locale);
+        console.log(config.site.lang)
 
         ////////////////////////////////////////////////////////////////// TEMPLATE
         // Get dynamic website url (http or https detection)
@@ -117,12 +124,15 @@
 
         // Set defaults
         config.site = _.extend({
-           dev: process.env.DEV ? true : false,
-           version: asset_version,
-           official_version: config.official.version,
-           js_addon: [],
-           css_addon: []
-        }, config.site) ;
+            js_addon: [],
+            css_addon: []
+        }, config.site, {
+            dev: process.env.DEV ? true : false,
+            version: asset_version,
+            official_version: config.official.version,
+            title: Core.Controllers.i18n.translate(config.site.title, config.site.lang.long),
+            desc: Core.Controllers.i18n.translate(config.site.desc, config.site.lang.long)
+        }) ;
 
         // LOgs
         //console.log(config)

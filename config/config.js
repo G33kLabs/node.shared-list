@@ -32,7 +32,6 @@
             'assets/vendors/async.min.js',
             'assets/vendors/json3.min.js',
             'assets/vendors/moment.min.js',
-            'assets/vendors/ace.js',
             'assets/vendors/browser.detect.js',
             'assets/vendors/backbone.min.js',
             'assets/vendors/mustache.min.js',
@@ -48,7 +47,7 @@
         "site": {
             "title": "Easy list sharing",
             "title_sufix": " | G33KLabs",
-            "desc": "The easiest way to share list anonymously with your firends !",
+            "desc": "The easiest way to share list anonymously with your friends !",
             "type": "website",
             "keywords": "share tools, share list, connect friends",
             "image": "[[website]]/assets/img/logo_share.jpg",
@@ -57,7 +56,7 @@
         "official": {
             "website_url": "http://shared-list.herokuapp.com/",
             "website": "shared-list.herokuapp.com",
-            "version": "1.0.1"
+            "version": "1.1.0"
         },
         "analytics": {
             "google": process.env.GOOGLE_ANALYTICS,
@@ -70,6 +69,6 @@
         }
     },
     "lang": {
-        "supported": ['fr_FR', 'en_US']
+        "supported": ['en_US', 'fr_FR']
     }
 }

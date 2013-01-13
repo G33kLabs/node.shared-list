@@ -5,7 +5,7 @@ var Controllers = require('./controllers') ;
 
 ///////////////////////////////////////////////////////////// LOAD APPLICATION /////////////
 var Application = function() {
-	this.Controllers = {}; 
+	this.Controllers = Controllers; 
 	this.loaded = false;
 	return this;
 }
@@ -32,13 +32,12 @@ Application.prototype = {
 
 			// -> Open database
 			OpenDB: function(callback) {
-				var DB = require('./controllers/db') ;
-			    GLOBAL.db = new DB({
-			    	link: process.env.MYSQL_DATABASE_URL,
-			    	//dump: root_path+'/config/dump.sql',
-					//models: require(root_path+'/config/model.js')
-			    }) ;
-			    callback(null, true);
+				self.loadDB(callback) ;
+			},
+
+			// -> Load locale Controller
+			Locale: function(callback) {
+				self.loadLocales(callback) ;
 			},
 
 			// -> Start WebServer
@@ -105,6 +104,22 @@ Application.prototype = {
 	// Get
 	config: function() {
 		return this.Controllers.config ? this.Controllers.config.toJSON() : null; 
+	},
+
+	/////////////////////////////////// DATABASE //////////
+	loadDB: function(callback) {
+		tools.debug('Load DB...')
+	    GLOBAL.db = new Controllers.db({
+	    	link: process.env.MYSQL_DATABASE_URL,
+	    	//dump: root_path+'/config/dump.sql',
+			//models: require(root_path+'/config/model.js')
+	    }, callback) ;
+	},
+
+	/////////////////////////////////// Locales //////////
+	loadLocales: function(callback) {
+		tools.debug('Load i18n...')
+		this.Controllers.i18n = new Controllers.locale(this.config().lang, callback) ;
 	},
 
 	/////////////////////////////////// WWW //////////

@@ -8,8 +8,8 @@
 /* Daemon libs */
 var _ = require('underscore') ,
 	async = require('async'),
-	watchr = require('watchr')
-	mkdirp = require('mkdirp')
+	watchr = require('watchr'),
+	mkdirp = require('mkdirp'),
 	colors = require('colors') ;
 
 /* Packer Libs */

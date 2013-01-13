@@ -1,5 +1,6 @@
 ///////////////////////////////////////// LIBS
 var mysql = require('mysql');
+var parse = require("url").parse;
 
 ///////////////////////////////////////// DATABASE CLASS
 module.exports = Backbone.Model.extend({
@@ -8,21 +9,26 @@ module.exports = Backbone.Model.extend({
 	defaults: {
 		link: false,
 		dump: false,
-		models: false
+		models: false,
+		reconnect: 5000
 	},
 
 	// Init & ask to open connection
-	initialize: function() {
-		if ( ! this.get('link') ) tools.error("MySql support disabled : no config found in ENV !")
-		else this.open() ;
+	initialize: function(opts, callback) {
+		if ( ! this.get('link') ) {
+			tools.warning("[!] Load DB : MySql support disabled. No config found in ENV !")
+			callback(null, "MySql support disabled : no config found in ENV !")
+		}
+		else this.open(callback) ;
 	},
 
 	// Open connection
-	open: function() {
+	open: function(callback) {
 		var self = this;
 
 		// Logs
-		tools.log('Open DB :: '+this.get('link'), 'lcyan') ;
+		var uri_parse = parse(this.get('link')) ;
+		tools.log('[>] Open DB : '+uri_parse.protocol+'//'+(uri_parse.auth?'...@':'')+uri_parse.host+uri_parse.path+'...', 'lcyan') ;
 
 		// Create link
 		self.db = mysql.createConnection(self.get('link'));
@@ -34,10 +40,11 @@ module.exports = Backbone.Model.extend({
 		self.db.connect(function(err) {
 			if ( err ) tools.error("ERROR with mysql connection :: "+err.code) ;
 			else {
-				tools.log('Database link is now open !') ;
+				tools.log('[>] Load DB : Link is now open !') ;
 				self.connection_lost = false ;
 				self.install() ;
 			}
+			if ( _.isFunction(callback) ) callback(err) ;
 		});
 
 	},
@@ -132,13 +139,15 @@ module.exports = Backbone.Model.extend({
 		var waitReconnect = function() {
 			self.connection_lost = true ;
 			self.open() ;
-			if ( waitReconnectTimer ) clearTimeout(waitReconnectTimer) ;
-			waitReconnectTimer = setTimeout(function() {
-				if (self.connection_lost) {
-					tools.warning('Connection still lost.. Retry to connect after 5 seconds of pause...')
-					waitReconnect() ;
-				}
-			}, 5000) ;
+			if ( self.get('reconnect') ) {
+				if ( waitReconnectTimer ) clearTimeout(waitReconnectTimer) ;
+				waitReconnectTimer = setTimeout(function() {
+					if (self.connection_lost) {
+						tools.warning('Connection still lost.. Retry to connect after 5 seconds of pause...')
+						waitReconnect() ;
+					}
+				}, self.get('reconnect')) ;
+			}
 		}
 
 		// Bind error

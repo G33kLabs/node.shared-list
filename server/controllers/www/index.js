@@ -1,9 +1,7 @@
 ///////////////////////////////////////////////////////////// WEB SERVER /////////////
 // Load Express & Redis
 var express = require('express'),
-	http = require('http'),
 	connect = require('connect'),
-    locale = require("locale"), 
     RedisStore = require('connect-heroku-redis')(connect);
 
 // Load routes
@@ -41,27 +39,6 @@ module.exports = Backbone.Model.extend({
 		app.use(express.errorHandler());
 		app.use(express.methodOverride());
 
-		// Add locales support
-		app.use(locale(Config.lang.supported)) ;
-
-		// Add locales
-		var default_locales = {};
-		_.each(Config.lang.supported, function(lang) {
-			try {
-
-				Core.config().lang[lang] = require(root_path+'/locales/'+lang+'.json') ;
-
-				var keys = _.keys(Core.config().lang[lang]);  
-	            _.each(keys, function(val) {
-	                default_locales[val] = val;
-	            })
-
-			} catch(e) {
-				tools.warning("Could not load locale file :: "+root_path+'/locales/'+lang+'.json')
-				Core.config().lang[lang] = default_locales;
-			}
-		}) ;
-
 		// Configure session
 		app.use(express.session({
 		    secret: Config.Session.secret, 
@@ -79,6 +56,11 @@ module.exports = Backbone.Model.extend({
 		    app.engine("html", require('hogan-express'));
 		}); 
 
+		// Add locales support
+		app.use(function(req, res, next) {
+			Core.Controllers.i18n.request(req, res, next) ;
+		});
+		
 		// Bind routes
 		_.each(Routes, function(route, name) {
 			tools.debug('Bind route :: '+name+' :: '+route.path) ;

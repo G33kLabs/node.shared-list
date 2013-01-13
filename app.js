@@ -8,11 +8,12 @@ GLOBAL.root_path = process.cwd() ;
 
 ///////////////////////////////////////////////////////////// TOOLS KIT ///////////////
 GLOBAL.tools = require('./server/libs/tools.kit') ;
-var asciimo = require('./server/libs/asciimo').Figlet
 
 ////////////////////////////////////////////////////////// WELCOME MESSAGE /////////////
+var asciimo = require('./server/libs/asciimo').Figlet
 async.series([
 	function(callback) {
+		console.log("\n")
 		asciimo.write("G33k", 'Banner', function(art){
 			console.log("\n")
 			console.log(tools.trim(art).rainbow.bold);
@@ -20,7 +21,7 @@ async.series([
 		}); 
 	},
 	function(callback) {
-		asciimo.write("SharedList", 'starwars', function(art){
+		asciimo.write("PROD", 'starwars', function(art){
 			console.log("\n====================================\n")
 			console.log(tools.trim(art).rainbow.bold);
 			console.log("\n")

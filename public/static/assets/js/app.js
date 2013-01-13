@@ -53,6 +53,11 @@
 			self.currentTab = $.trim(this.dom.nav.find('ul.nav li.active').text()).toLowerCase() ;
 			return self.currentTab;
 		},
+		render: function(html, vars) {
+			html = html.replace(/\[\[/g, '{{').replace(/\]\]/g, '}}') || '' ;
+			vars = vars || {} ;
+			return Mustache.to_html(html, vars)
+		},
 
 		//============================================================= LIVE RELOAD DEV
 		liveReload: function() {
