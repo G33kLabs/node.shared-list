@@ -111,7 +111,7 @@
         ////////////////////////////////////////////////////////////////// TEMPLATE
         // Get dynamic website url (http or https detection)
         config.site.website = req.protocol + '://' + req.headers.host;
-        console.log(config.site.website, req.protocol)
+        console.log(config.site.website, req)
         config.site.canonical = config.site.website + req.url;
         config.site.path = encodeURIComponent(req.url);
 
