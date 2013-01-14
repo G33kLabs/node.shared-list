@@ -73,6 +73,7 @@
             config.isAdmin = true;
         } 
 
+        //
         ////////////////////////////////////////////////////////////////// ADD LANG INTO CONFIG
 /*
         config = _.extend({ lang: Core.config().lang }, config)
