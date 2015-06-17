@@ -31,7 +31,7 @@
 
         // -> Open a shared list
         var link = app.parse_url(window.location.href) ;
-        var permalink = link.protocol+'//'+link.hostname+(link.port!=80?':'+link.port:'')+'/'+link.hash;
+        var permalink = link.protocol+'//'+link.hostname+'/'+link.hash;
         var template = app.render(tpl.editor, {
             link: permalink
         }); 
